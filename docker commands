@@ -1,0 +1,114 @@
+ ============================================================================
+
+--name = to give a to container
+
+-d = to run a container in detached mode (run container in background)
+
+-e or -env = for passing environment variable
+
+-p for port publish/forwarding/mapping (Hostport:Containerport)
+
+-P for default port publish/forwarding/mapping 
+
+-it for getting interactive terminal of container
+
+-v/--volume = to attach an volume to container
+
+--network for running a container in specified network
+
+--volume-from for shared volume
+
+==================================================================================
+
+docker info = docker information 
+
+docker inspect <containername> = provide container information
+
+docker network create <networkname> = for creating a private network
+
+docker exec <containername> /ls /bin/bash
+
+docker version = 
+
+docker commit <conatinername> <registry/repo:tags> = create a new image from running container ( not best practice) 
+
+docker build --name <imagename:tag> .  (here . represent buldcontext) Dockerfile 
+
+docker build -f <filename> --name <imagename:tag> .   (in case of custom dockerfilename) any other name like sarim.txt
+
+docker system prune -a = it removes dangling images, stopped containers, volumes & network.
+
+docker ps = shows the running container processes
+
+docker ps -a = shows all docker container
+
+docker port <containername>   (show how many port are connected with the container)
+
+docker images/image ls = shows all docker image present inside docker server
+
+docker create <imagename:tag>
+
+docker run <imagename:tag>
+
+docker start <conatinername>
+
+docker stop <conatinername>
+
+docker rmi <image name>
+
+docker rm <container name> (it only works with stopped containers)
+
+docker images $(dangling=true)
+
+
+======================================================================================
+                                        Dockerfile
+======================================================================================
+
+FROM
+
+MAINTAINER
+
+ADD
+
+RUN
+
+COPY
+
+EXPOSE
+
+ENVIRONMENT
+
+WORKDIR
+
+CMD
+
+ENTRYPOINT
+
+LABEL
+
+ARG
+
+USER
+
+VOLUME
+
+------------------------
+
+--no-cache = it ignores cache memory of docker while building an image using dockerfile
+
+
+=============================================================================================
+                                    Docker-Compose
+=============================================================================================
+
+version: "3"
+
+services: 
+
+volume:
+
+networks:
+
+
+=============================================================================================
