@@ -1,0 +1,151 @@
+    *** ----- kubernetes commands ----- ***
+
+kubectl get nodes
+
+
+kubectl get namespace   <--- 4 are by default
+
+kubectl get all --namespace <namespace name>     <--- show resorces in namespace
+
+kubectl creat namespace test
+
+kubectl api resorces
+
+cat /etc/kubernetes/admin.conf       <---- to see certificates
+
+mkdir ~/.kub   vi ~/.kub/config      <--- past certificates in the config file
+
+kubectl get all --all-namespaces     <---- all resorces in all namespaces
+
+kubectl get pods
+kubectl get nodes
+kubectl get namespace
+kubectl get replicas
+kubectl get configmaps
+kubectl get diployments
+
+kubectl describe node <ip>
+kubectl describe pods <pod name>
+kubectl describe replicas <replica name>
+kubectl describe deploynents <deployment name>
+kubectl describe service <service name>
+
+
+kubectl apply -f file.yaml --dry-run=client
+kubectl apply -f file.yaml --dry-run=server
+kubectl apply -f file.yaml
+
+
+kubectl get pods                       <------it find in default namespace
+kubectl get pods -n test-ns            <------ it found on test-ns namespace where we deployed
+kubectl get node -n test-ns -o wide    <--- give additional information.
+
+kubectl describe pod mavenpodwebapppod -n test-ns
+kubectl describe node "ip-172-31--3-215"
+
+kubectl exec -it <podname> -c <containername> -- bash    <------- to inter in the container.
+
+curl -v localhost      <---- it give that one container communicate btw onother. 
+
+Fully qialified domain name
+<servicename>.<namespace>.svc.cluster.local
+
+
+kubectl get pods --show-labels -n default
+kubectl get pods -l env=prod
+kubectl get pods -l env!=prod
+kubectl delete pod -l env=devlopment
+kubectl labele nodes <ip> hardware=t2.medium
+kubectl labele pods <podip> env=production
+
+kubectl logs <podname> -c <container name>
+
+********** static pod location ***********
+
+stati pod location ----->     /etc/kubernetes/manifests/
+
+vi nginix.yaml  ------>  id you create this as a static pod so coppy tis in static pod location
+
+sudo cp nginix.yaml  /etc/kubernetes/manifest/    
+
+kubectl get pods
+
+---->now this create as a static pos dont have to fier  kubectl apply command just make a manifest file and coppy it in static file location
+
+now try to delete this pod it get up within a second.
+but we dont deploy any pod as static pod it onlu for control plane.
+
+
+make pode with tage
+make replication controler
+
+kubectl scale --replica=2 rc -l  env=devolopment
+kubectl scale --replica=10 rc -l env=development
+
+
+kubectl config view | grep namespace:
+
+kubectl get svc -n namespace -o wide
+
+
+
+# to create the metrics server.
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+( provided by the kubernetes community )
+
+kubectl edit deployment  metrics-server -n kube-system
+
+containers:
+      - args:
+        - --cert-dir=/tmp
+        - --secure-port=10250
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+        - --kubelet-insecure-tls    ---> this is missing have to be add
+
+
+
+   kow after 5min bellow commannds work
+kubectl top nodes
+kubectl top pods
+kubectl top pods --containers=true -n kube-system
+
+
+
+NodeSelector:
+
+kubectl label nodes my-node environment=production
+kubtctl lable node  172.32.23 name=worker1
+kubectl get nodes --show-labels
+
+
+Taints:-
+
+lets apply taints on the node
+kubectl taint nodes <ip> node=hatespods:NoSchedule
+kubectl taints nodes <ip> node=hatespods:NpSchedule-    <---- to remove taints
+
+
+
+
+kubectl get quota
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
