@@ -1,0 +1,104 @@
+git init
+
+git status
+
+git add <filenmame>
+
+git commit -m "messege"      ("NSW-102 login feature commited") in some company there is jira ticket also have to mention in commit message.
+
+git commit --amend -m "New and improved commit message"  (to change commit message, we can only change recent commit only old commit not possible.)
+
+git puch fb main
+
+git remote add fb <url>
+
+git remote
+
+git -a -m "message" 
+
+git reset <filename>       <---- to remove from staging area
+
+git log      <----- for commit id
+
+git revert <commit id>   < ---- HAVE TO EXPLORE
+
+git push fb master -f    <---- what ever in local push it to remote.
+
+we are maintaining 3 invironment 1.dev env ( use by developer)   2.QA env,stage env, preprod (use by testors).  3.prod environment (end users).
+
+git branch    <---- show how many branches
+
+git branch development    <---- devlopment branch created.
+
+git branch -d <branch name>    <---- delete the branch
+
+git checkout development
+
+git branch -m dev     <--- change branch name.
+
+git diff development   <--- give diffrence your present branch and devlopment branch.
+ 
+git diff development stage   <----- give diffrence between devlopment & stage.
+
+git merge master    
+
+git push fb master development stage     <------ push the branches.
+
+git push fb --all           <------ push the branches.
+
+git branch -a 
+
+git branch -d development
+
+git push fb :development
+
+
+**** .gitignore  *****
+
+vi .gitignore
+git add .
+git commit -m "ignorefiles"
+
+
+***** tag *****
+
+git tag facebookv1.0.0
+git tag
+git push fb tag facebookv1.0.0
+git tag -d facebookv1.0.0
+
+
+****** stash  ******
+
+git add file1
+git stash save "for login info"
+git stash list
+git stash apply stash{0}  <---- remove from stash
+git stash drop stash@{0}   <--- delete stash.
+
+
+******* cherry-pick  *******
+
+ if we want that the perticular commit merge to the master branch or any other branch so we use cherry-pick.
+
+ git log                         <----- tack commit id
+ git checkout maste              <---- go to branch where you want to merge 
+ git cherry-pick <commit id>     <---- now this is merge to the branch where you presnnt now.
+
+
+******* git fetch *****
+
+git fetch fb master
+git merge 
+
+
+
+
+*** ssh-key ****( authenticate through sshkey.)
+
+in your local matchin do ssh-keygen
+cat c/Users/Solv-IT/.ssh/id_ed25519.pub
+coppy the contain & pest it in github (remote) 
+go to github  -->settings ->ssh and gpg keys -->new ssh key -->then pest the contain.
+ssh -T git@github.com   ------> it show you are succefully connected or not.
+git rermote add fb1 <ssh url>
