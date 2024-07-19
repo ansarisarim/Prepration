@@ -1,0 +1,184 @@
+terraform commands
+==================                 
+
+
+terraform init
+
+terraform validate
+
+terraform fmt
+
+terraform apply     <-auto-approve>
+
+terraform destroy   <-auto-approve>
+
+----------------------------------------------------------------------
+
+terraform journal commands
+===========================
+
+terraform graph [graphViz.online]
+
+terraform plan -out=<plan1>.out
+
+
+Terraform state Commands
+=========================
+
+terraform state list
+
+terraform state show <resource-address>
+
+terraform state rm <resource-address>
+
+terraform state pull
+
+terraform state push   <not a best practice>
+
+
+
+terraform taint <resource_type.resource_local_name>
+
+terraform untaint <resource_type.resource_local_name>
+
+terraform state mv <source-address> <destination-address>
+
+terraform import <resource-address> <resource-id>    [terraform  will manage self created resource]
+
+terraform state replace-provider <source-provider> <destination-provider>
+
+----------------------------------------------------------
+
+Terraform workspace
+====================
+
+terraform workspace show    [it shows the current WS]
+
+terraform workspace select <workspace_name>  [it will changed to this selected WS]
+
+terraform workspace new <workspace_name>    [it will create a new WS]
+
+terraform workspace list    [it will shows the list of WS]
+
+terraform workspace delete <workspace_name>
+
+
+-------------------------------------------------------------------------
+
+
+terraform provisioners
+=======================
+
+connection block:
+----------------
+
+connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("~/.ssh/my-key.pem")
+      host        = self.public_ip
+}
+
+
+
+Remote-exec provisioner:    it used for exuecuting some commands after resource creation.
+=======================
+
+
+ provisioner "remote-exec" {
+      inline = [
+        "sudo apt-get update",
+        "sudo apt-get install -y nginx"
+      ]
+ }
+
+
+File provisioner:  used for copying files or folders from local to remote server.
+==================
+
+ provisioner "file" {
+    source      = "path/to/local/directory/"
+    destination = "/path/on/remote/directory/"
+
+
+local provisioner:   in this example local provisioner is used for getting public_ip of remote server and storing it into local working directory.
+====================
+
+ provisioner "local-exec" {
+    command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
+  }
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
